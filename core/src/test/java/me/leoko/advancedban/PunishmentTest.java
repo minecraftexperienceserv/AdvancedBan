@@ -37,7 +37,7 @@ public class PunishmentTest {
     @Test
     public void shouldCreatePunishmentForGivenUserWithGivenReason(){
         assertFalse(PunishmentManager.get().isBanned("leoko"), "User should not be banned by default");
-        CommandManager.get().onCommand("UnitTest", "ban", new String[]{"Leoko", "Doing", "some", "unit-testing"});
+        CommandManager.get().onCommand("UnitTest", "fban", new String[]{"Leoko", "Doing", "some", "unit-testing"});
         assertTrue(PunishmentManager.get().isBanned("leoko"), "Punishment from above has failed");
         assertEquals("Doing some unit-testing", PunishmentManager.get().getBan("leoko").getReason(), "Reason should match");
     }

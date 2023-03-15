@@ -8,49 +8,49 @@ api-version: 1.13
 commands:
   AdvancedBan:
     description: Information about the Plugin
-  ban:
+  fban:
     description: Ban a user permanently
-  tempban:
+  ftempban:
     description: Ban a user temporarily
-  ipban:
+  fipban:
     description: Ban a user by IP
     aliases: [banip, ban-ip]
-  tempipban:
+  ftempipban:
     description: Ban a user temporarily by IP
     aliases: [tipban]
-  kick:
+  fkick:
     description: Kick a user
-  warn:
+  fwarn:
     description: Warn a user permanently
   note:
     description: Adds a note to a users file
-  tempwarn:
+  ftempwarn:
     description: Warn a user temporarily
-  mute:
+  fmute:
     description: Mute a user permanently
-  tempmute:
+  ftempmute:
     description: Mute a user temporarily
-  banlist:
+  fbanlist:
     description: See all punishments
-  history:
+  fhistory:
     description: See a user''s history
-  warns:
+  fwarns:
     description: See your or a user''s warns
   notes:
     description: See your or a user''s notes
-  check:
+  fcheck:
     description: Get all information about a user
   systemPrefs:
     description: Displays System-Preferences for setting up the plugin
-  unwarn:
+  funwarn:
     description: Deletes a warn
-  unnote:
+  funnote:
     description: Deletes a note
-  unpunish:
+  funpunish:
     description: Deletes a punishment by ID
-  unban:
+  funban:
     description: Unban a user
-  unmute:
+  funmute:
     description: Unmute a user
-  change-reason:
+  fchange-reason:
     description: Change the reason of an existing punishment

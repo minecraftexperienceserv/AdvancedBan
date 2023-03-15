@@ -32,7 +32,7 @@ public enum Command {
             new PunishmentTabCompleter(false),
             new PunishmentProcessor(PunishmentType.BAN),
             PunishmentType.BAN.getConfSection("Usage"),
-            "ban"),
+            "fban"),
 
     TEMP_BAN(
             PunishmentType.TEMP_BAN.getPerms(),
@@ -40,7 +40,7 @@ public enum Command {
             new PunishmentTabCompleter(true),
             new PunishmentProcessor(PunishmentType.TEMP_BAN),
             PunishmentType.TEMP_BAN.getConfSection("Usage"),
-            "tempban"),
+            "ftempban"),
 
     IP_BAN(
             PunishmentType.IP_BAN.getPerms(),
@@ -48,7 +48,7 @@ public enum Command {
             new PunishmentTabCompleter(false),
             new PunishmentProcessor(PunishmentType.IP_BAN),
             PunishmentType.IP_BAN.getConfSection("Usage"),
-            "ipban", "banip", "ban-ip"),
+            "fipban", "fbanip", "fban-ip"),
 
     TEMP_IP_BAN(
             PunishmentType.TEMP_IP_BAN.getPerms(),
@@ -56,7 +56,7 @@ public enum Command {
             new PunishmentTabCompleter(true),
             new PunishmentProcessor(PunishmentType.TEMP_IP_BAN),
             PunishmentType.TEMP_IP_BAN.getConfSection("Usage"),
-            "tempipban"),
+            "ftempipban"),
 
     MUTE(
             PunishmentType.MUTE.getPerms(),
@@ -64,7 +64,7 @@ public enum Command {
             new PunishmentTabCompleter(false),
             new PunishmentProcessor(PunishmentType.MUTE),
             PunishmentType.MUTE.getConfSection("Usage"),
-            "mute"),
+            "fmute"),
 
     TEMP_MUTE(
             PunishmentType.TEMP_MUTE.getPerms(),
@@ -72,7 +72,7 @@ public enum Command {
             new PunishmentTabCompleter(true),
             new PunishmentProcessor(PunishmentType.TEMP_MUTE),
             PunishmentType.TEMP_MUTE.getConfSection("Usage"),
-            "tempmute"),
+            "ftempmute"),
 
     WARN(
             PunishmentType.WARNING.getPerms(),
@@ -80,7 +80,7 @@ public enum Command {
             new PunishmentTabCompleter(false),
             new PunishmentProcessor(PunishmentType.WARNING),
             PunishmentType.WARNING.getConfSection("Usage"),
-            "warn"),
+            "fwarn"),
 
     TEMP_WARN(
             PunishmentType.TEMP_WARNING.getPerms(),
@@ -88,7 +88,7 @@ public enum Command {
             new PunishmentTabCompleter(true),
             new PunishmentProcessor(PunishmentType.TEMP_WARNING),
             PunishmentType.TEMP_WARNING.getConfSection("Usage"),
-            "tempwarn"),
+            "ftempwarn"),
 
     NOTE(
             PunishmentType.NOTE.getPerms(),
@@ -112,21 +112,21 @@ public enum Command {
                 new PunishmentProcessor(PunishmentType.KICK).accept(input);
             },
             PunishmentType.KICK.getConfSection("Usage"),
-            "kick"),
+            "fkick"),
 
     UN_BAN("ab." + PunishmentType.BAN.getName() + ".undo",
             "\\S+",
             new BasicTabCompleter("[Name/IP]"),
             new RevokeProcessor(PunishmentType.BAN),
             "Un" + PunishmentType.BAN.getConfSection("Usage"),
-            "unban"),
+            "funban"),
 
     UN_MUTE("ab." + PunishmentType.MUTE.getName() + ".undo",
             "\\S+",
             new BasicTabCompleter(CleanTabCompleter.PLAYER_PLACEHOLDER, "[Name]"),
             new RevokeProcessor(PunishmentType.MUTE),
             "Un" + PunishmentType.MUTE.getConfSection("Usage"),
-            "unmute"),
+            "funmute"),
 
     UN_WARN("ab." + PunishmentType.WARNING.getName() + ".undo",
             "[0-9]+|(?i:clear \\S+)",
@@ -166,7 +166,7 @@ public enum Command {
                 }
             },
             "Un" + PunishmentType.WARNING.getConfSection("Usage"),
-            "unwarn"),
+            "funwarn"),
     UN_NOTE("ab." + PunishmentType.NOTE.getName() + ".undo",
             "[0-9]+|(?i:clear \\S+)",
             new CleanTabCompleter((user, args) -> {
@@ -205,14 +205,14 @@ public enum Command {
                 }
             },
             "Un" + PunishmentType.NOTE.getConfSection("Usage"),
-            "unnote"),
+            "funnote"),
 
     UN_PUNISH("ab.all.undo",
             "[0-9]+",
             new BasicTabCompleter("<ID>"),
             new RevokeByIdProcessor("UnPunish", PunishmentManager.get()::getPunishment),
             "UnPunish.Usage",
-            "unpunish"),
+            "funpunish"),
 
     CHANGE_REASON("ab.changeReason",
             "([0-9]+|(?i)(ban|mute) \\S+) .+",
@@ -267,7 +267,7 @@ public enum Command {
                 }
             },
             "ChangeReason.Usage",
-            "change-reason"),
+            "fchange-reason"),
 
     BAN_LIST("ab.banlist",
             "([1-9][0-9]*)?",
@@ -276,7 +276,7 @@ public enum Command {
                     target -> PunishmentManager.get().getPunishments(SQLQuery.SELECT_ALL_PUNISHMENTS_LIMIT, 150),
                     "Banlist", false, false),
             "Banlist.Usage",
-            "banlist"),
+            "fbanlist"),
 
     HISTORY("ab.history",
             "\\S+( [1-9][0-9]*)?",
@@ -292,7 +292,7 @@ public enum Command {
                     target -> PunishmentManager.get().getPunishments(target, null, false),
                     "History", true, true),
             "History.Usage",
-            "history"),
+            "fhistory"),
 
     WARNS(null,
             "\\S+( [1-9][0-9]*)?|\\S+|",
@@ -331,7 +331,7 @@ public enum Command {
                 }
             },
             "Warns.Usage",
-            "warns"),
+            "fwarns"),
     NOTES(null,
             "\\S+( [1-9][0-9]*)?|\\S+|",
             new CleanTabCompleter((user, args) -> {
@@ -413,7 +413,7 @@ public enum Command {
                 MessageManager.sendMessage(sender, "Check.Note", false, "COUNT", PunishmentManager.get().getCurrentNotes(uuid) + "");
             },
             "Check.Usage",
-            "check"),
+            "fcheck"),
 
     SYSTEM_PREFERENCES("ab.systemprefs",
             ".*",
@@ -454,45 +454,45 @@ public enum Command {
                             mi.sendMessage(sender, "§8");
                             mi.sendMessage(sender, "§c§lAdvancedBan §7Command-Help");
                             mi.sendMessage(sender, "§8");
-                            mi.sendMessage(sender, "§c/ban [Name] [Reason/@Layout]");
+                            mi.sendMessage(sender, "§c/fban [Name] [Reason/@Layout]");
                             mi.sendMessage(sender, "§8» §7Ban a user permanently");
-                            mi.sendMessage(sender, "§c/banip [Name/IP] [Reason/@Layout]");
+                            mi.sendMessage(sender, "§c/fbanip [Name/IP] [Reason/@Layout]");
                             mi.sendMessage(sender, "§8» §7Ban a user by IP");
-                            mi.sendMessage(sender, "§c/tempban [Name] [Xmo/Xd/Xh/Xm/Xs/#TimeLayout] [Reason/@Layout]");
+                            mi.sendMessage(sender, "§c/ftempban [Name] [Xmo/Xd/Xh/Xm/Xs/#TimeLayout] [Reason/@Layout]");
                             mi.sendMessage(sender, "§8» §7Ban a user temporary");
-                            mi.sendMessage(sender, "§c/mute [Name] [Reason/@Layout]");
+                            mi.sendMessage(sender, "§c/fmute [Name] [Reason/@Layout]");
                             mi.sendMessage(sender, "§8» §7Mute a user permanently");
-                            mi.sendMessage(sender, "§c/tempmute [Name] [Xmo/Xd/Xh/Xm/Xs/#TimeLayout] [Reason/@Layout]");
+                            mi.sendMessage(sender, "§c/ftempmute [Name] [Xmo/Xd/Xh/Xm/Xs/#TimeLayout] [Reason/@Layout]");
                             mi.sendMessage(sender, "§8» §7Mute a user temporary");
-                            mi.sendMessage(sender, "§c/warn [Name] [Reason/@Layout]");
+                            mi.sendMessage(sender, "§c/fwarn [Name] [Reason/@Layout]");
                             mi.sendMessage(sender, "§8» §7Warn a user permanently");
                             mi.sendMessage(sender, "§c/note [Name] [Note]");
                             mi.sendMessage(sender, "§8» §7Adds a note to a user");
-                            mi.sendMessage(sender, "§c/tempwarn [Name] [Xmo/Xd/Xh/Xm/Xs/#TimeLayout] [Reason/@Layout]");
+                            mi.sendMessage(sender, "§c/ftempwarn [Name] [Xmo/Xd/Xh/Xm/Xs/#TimeLayout] [Reason/@Layout]");
                             mi.sendMessage(sender, "§8» §7Warn a user temporary");
-                            mi.sendMessage(sender, "§c/kick [Name] [Reason/@Layout]");
+                            mi.sendMessage(sender, "§c/fkick [Name] [Reason/@Layout]");
                             mi.sendMessage(sender, "§8» §7Kick a user");
-                            mi.sendMessage(sender, "§c/unban [Name/IP]");
+                            mi.sendMessage(sender, "§c/funban [Name/IP]");
                             mi.sendMessage(sender, "§8» §7Unban a user");
-                            mi.sendMessage(sender, "§c/unmute [Name]");
+                            mi.sendMessage(sender, "§c/funmute [Name]");
                             mi.sendMessage(sender, "§8» §7Unmute a user");
-                            mi.sendMessage(sender, "§c/unwarn [ID] or /unwarn clear [Name]");
+                            mi.sendMessage(sender, "§c/funwarn [ID] or /unwarn clear [Name]");
                             mi.sendMessage(sender, "§8» §7Deletes a warn");
                             mi.sendMessage(sender, "§c/unnote [ID] or /unnote clear [Name]");
                             mi.sendMessage(sender, "§8» §7Deletes a note");
-                            mi.sendMessage(sender, "§c/change-reason [ID or ban/mute USER] [New reason]");
+                            mi.sendMessage(sender, "§c/fchange-reason [ID or ban/mute USER] [New reason]");
                             mi.sendMessage(sender, "§8» §7Changes the reason of a punishment");
-                            mi.sendMessage(sender, "§c/unpunish [ID]");
+                            mi.sendMessage(sender, "§c/funpunish [ID]");
                             mi.sendMessage(sender, "§8» §7Deletes a punishment by ID");
-                            mi.sendMessage(sender, "§c/banlist <Page>");
+                            mi.sendMessage(sender, "§c/fbanlist <Page>");
                             mi.sendMessage(sender, "§8» §7See all punishments");
-                            mi.sendMessage(sender, "§c/history [Name/IP] <Page>");
+                            mi.sendMessage(sender, "§c/fhistory [Name/IP] <Page>");
                             mi.sendMessage(sender, "§8» §7See a users history");
-                            mi.sendMessage(sender, "§c/warns [Name] <Page>");
+                            mi.sendMessage(sender, "§c/fwarns [Name] <Page>");
                             mi.sendMessage(sender, "§8» §7See your or a users warnings");
                             mi.sendMessage(sender, "§c/notes [Name] <Page>");
                             mi.sendMessage(sender, "§8» §7See your or a users notes");
-                            mi.sendMessage(sender, "§c/check [Name]");
+                            mi.sendMessage(sender, "§c/fcheck [Name]");
                             mi.sendMessage(sender, "§8» §7Get all information about a user");
                             mi.sendMessage(sender, "§c/AdvancedBan <reload/help>");
                             mi.sendMessage(sender, "§8» §7Reloads the plugin or shows help page");
